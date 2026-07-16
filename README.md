@@ -221,16 +221,21 @@ irrigation_data.csv
 # 📂 Struktur Project
 
 ```
-Smart-Irrigation-System
+Smart-Irrigation-iot
 
 │
 ├── ESP32
-│   └── main.ino
+│   ├── main.ino
+│   ├── diagram.json
+│   ├── diagram-soil-moisture-sensor.json
+│   ├── soil-moisture-sensor.c
+│   └── libraries.txt
 │
-├── Website
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── index.html
+│
+├── style.css
+│
+├──script.js
 │
 └── README.md
 ```
@@ -261,7 +266,7 @@ Upload Success
 Website dapat diakses melalui GitHub Pages:
 
 ```
-https://babagas.github.io/smart-irrigation-dashboard/
+https://babagas.github.io/smart-irrigation-iot/
 ```
 
 Website akan otomatis mengambil data terbaru dari ThingSpeak.
