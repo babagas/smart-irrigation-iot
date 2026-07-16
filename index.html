@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Irrigation System</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🌱 Smart Irrigation System</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>Soil Moisture</h3>
+            <p id="soil">-- %</p>
+        </div>
+
+        <div class="card">
+            <h3>Temperature</h3>
+            <p id="temperature">-- °C</p>
+        </div>
+
+        <div class="card">
+            <h3>Pump Status</h3>
+            <p id="pump">--</p>
+        </div>
+
+    </div>
+
+
+    <div class="chart-box">
+        <h2>Soil Moisture</h2>
+        <canvas id="soilChart"></canvas>
+    </div>
+
+
+    <div class="chart-box">
+        <h2>Temperature</h2>
+        <canvas id="tempChart"></canvas>
+    </div>
+
+
+
+    <div class="table-box">
+
+        <h2>Data Logging</h2>
+
+        <button onclick="downloadCSV()">
+            Download CSV
+        </button>
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>Time</th>
+                    <th>Soil (%)</th>
+                    <th>Temp (°C)</th>
+                    <th>Pump</th>
+                </tr>
+            </thead>
+
+            <tbody id="dataTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
