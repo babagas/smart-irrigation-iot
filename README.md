@@ -235,7 +235,7 @@ Smart-Irrigation-iot
 │
 ├── style.css
 │
-├──script.js
+├── script.js
 │
 └── README.md
 ```
@@ -297,3 +297,6 @@ Dibuat menggunakan:
 - Soil Moisture Sensor
 - ThingSpeak
 - Web Dashboard
+
+Honorable Mention:
+ChatGPT 
