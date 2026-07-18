@@ -89,9 +89,19 @@ history=[];
 feeds.forEach(item=>{
 
 
+let date = new Date(item.created_at);
+
 let time =
-new Date(item.created_at)
-.toLocaleTimeString();
+date.toLocaleDateString("id-ID",{
+    day:"2-digit",
+    month:"short",
+    year:"numeric"
+})
++"\n"+
+date.toLocaleTimeString("id-ID",{
+    hour:"2-digit",
+    minute:"2-digit"
+});
 
 
 
