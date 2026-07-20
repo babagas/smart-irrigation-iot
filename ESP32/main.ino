@@ -33,11 +33,11 @@ void sendToThingSpeak(int soil, float temp, bool pump) //menyinkronkan data pada
 #define OLED_RESET    -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#define DHTPIN 32                   // Pin DATA DHT22 dihubungkan ke GPIO32 ESP32
+#define DHTPIN 32                   // Pin SDA DHT22 dihubungkan ke GPIO32 ESP32
 #define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-const int SOIL_MOISTURE_PIN = 33;
+const int SOIL_MOISTURE_PIN = 33;            // Pin SIG Soil Moisture Sensor dihubungkan ke GPIO 33 ESP32
 const int PUMP_RELAY_PIN = 22;              // Pin input Modul Relay dihubungkan ke GPIO 22 ESP32
 
 int MOISTURE_THRESHOLD_LOW = 15;            // Ambang batas bawah (%) untuk menyalakan pompa
