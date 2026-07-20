@@ -12,7 +12,7 @@ Project ini mensimulasikan sistem penyiraman tanaman otomatis menggunakan **ESP3
 <img src="images/wokwi-schematic.png" width="800">
 
 ## Schematic (KiCad)
-<img src="images/kicad-schematic.png" width="800">
+![Schematic](images/kicad-schematic.svg)
 
 ---
 
