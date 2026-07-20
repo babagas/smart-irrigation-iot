@@ -11,9 +11,9 @@ WiFiClient client;
 unsigned long myChannelNumber = 3428611;
 const char * myWriteAPIKey = "FUQJBTILLXYCCIA8";
 
-void sendToThingSpeak(int soil, float temp, bool pump)
+void sendToThingSpeak(int soil, float temp, bool pump) //menyinkronkan data pada ThingSpeak dengan data yang dibaca sensor
 {
-  ThingSpeak.setField(1, soil);
+  ThingSpeak.setField(1, soil); 
   ThingSpeak.setField(2, temp);
   ThingSpeak.setField(3, pump ? 1 : 0);
 
@@ -33,12 +33,12 @@ void sendToThingSpeak(int soil, float temp, bool pump)
 #define OLED_RESET    -1 // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
-#define DHTPIN 15                   // Pin DATA DHT22 dihubungkan ke GPIO 15 ESP32
-#define DHTTYPE DHT22               
+#define DHTPIN 32                   // Pin DATA DHT22 dihubungkan ke GPIO32 ESP32
+#define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 
-const int SOIL_MOISTURE_PIN = 34;
-const int PUMP_RELAY_PIN = 19;              // Pin input Modul Relay dihubungkan ke GPIO 19 ESP32
+const int SOIL_MOISTURE_PIN = 33;
+const int PUMP_RELAY_PIN = 22;              // Pin input Modul Relay dihubungkan ke GPIO 22 ESP32
 
 int MOISTURE_THRESHOLD_LOW = 15;            // Ambang batas bawah (%) untuk menyalakan pompa
 int MOISTURE_THRESHOLD_HIGH = 85;           // Ambang batas atas (%) untuk mematikan pompa
@@ -48,7 +48,7 @@ char ssid[] = "Wokwi-GUEST";
 char pass[] = "";
 
 
-// Fungsi untuk membaca sensor, update OLED, dan kirim data ke Blynk
+// Fungsi untuk membaca sensor, update OLED, dan kirim data ke ThingSpeak
 void updateSystem()
 {
   // 1. Membaca dan mengonversi kelembaban tanah ke persen
@@ -80,7 +80,7 @@ void updateSystem()
   Serial.println("-------------");
   // 6. Tampilkan data ke Layar OLED SSD1306
   display.clearDisplay();
-  
+
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
@@ -105,36 +105,36 @@ void updateSystem()
 
   display.display(); // Terapkan perubahan ke layar
   sendToThingSpeak(
-soilMoisturePercentage,
-temperature,
-PUMP_STATUS
-);
+    soilMoisturePercentage,
+    temperature,
+    PUMP_STATUS
+  );
 }
 
 void setup()
 {
   Serial.begin(115200);
   WiFi.begin(ssid, pass);
+  Wire.begin(15,2); // Pin OLED SDA dihubungkan ke GPIO15 dan Pin OLED SCL dihubungkan ke GPIO2
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
 
-while (WiFi.status() != WL_CONNECTED) {
-  delay(500);
-  Serial.print(".");
-}
+  Serial.println();
+  Serial.println("WiFi Connected");
+  ThingSpeak.begin(client);
 
-Serial.println();
-Serial.println("WiFi Connected");
-ThingSpeak.begin(client);
-  
   dht.begin();
   pinMode(PUMP_RELAY_PIN, OUTPUT);
   digitalWrite(PUMP_RELAY_PIN, LOW);
 
   // Inisialisasi OLED dengan alamat I2C 0x3C
-  if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { 
+  if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
     Serial.println(F("SSD1306 allocation failed"));
-    for(;;); // Berhenti jika OLED gagal inisialisasi
+    for (;;); // Berhenti jika OLED gagal inisialisasi
   }
-  
+
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
@@ -148,7 +148,7 @@ unsigned long lastUpdate = 0;
 
 void loop()
 {
-  if (millis() - lastUpdate >= 16000)
+  if (millis() - lastUpdate >= 16000) // Update tiap 16 detik sekali
   {
     lastUpdate = millis();
     updateSystem();
