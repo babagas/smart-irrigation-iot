@@ -6,6 +6,16 @@ Project ini mensimulasikan sistem penyiraman tanaman otomatis menggunakan **ESP3
 
 ---
 
+# 📸 Tampilan Project
+
+## Wiring Diagram (Wokwi)
+<img src="images/wokwi-schematic.png" width="800">
+
+## Schematic (KiCad)
+<img src="images/kicad-schematic.png" width="800">
+
+---
+
 # 📌 Deskripsi Project
 
 Smart Irrigation System merupakan sistem yang dirancang untuk membantu proses penyiraman tanaman secara otomatis berdasarkan kondisi kelembaban tanah.
@@ -70,11 +80,11 @@ Data sensor kemudian dikirimkan ke platform ThingSpeak melalui koneksi WiFi. Web
 
 | Komponen | Pin ESP32 |
 |---|---|
-| Soil Moisture Sensor | GPIO 34 |
-| DHT22 Data | GPIO 15 |
-| Relay Input | GPIO 19 |
-| OLED SDA | GPIO 21 |
-| OLED SCL | GPIO 22 |
+| Soil Moisture Sensor | GPIO 33 |
+| DHT22 SDA | GPIO 32 |
+| Relay Input | GPIO 22 |
+| OLED SDA | GPIO 15 |
+| OLED SCL | GPIO 2 |
 
 ---
 
@@ -231,6 +241,9 @@ Smart-Irrigation-iot
 │   ├── soil-moisture-sensor.c
 │   └── libraries.txt
 │
+├── images
+│   ├── kicad-schematic.png
+│   └── wokwi-schematic.png
 ├── index.html
 │
 ├── style.css
